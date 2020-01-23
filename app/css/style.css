@@ -62,6 +62,10 @@ header img {
     padding: 0px 0px !important;
 }
 
+.box-combo-footer {
+    padding: 0px 0px !important;
+}
+
 /* heads das tabs */
 .box-combo-tabs a{
     cursor: pointer;
