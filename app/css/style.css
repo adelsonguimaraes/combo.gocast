@@ -1,0 +1,87 @@
+body {
+    /* position: absolute;
+    overflow: auto;
+    height: 100vh; */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+header {
+    background: #fffefe;
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 65px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-items: stretch;
+    flex-direction: row;
+    /* border-bottom: 1px solid #ccc; */
+    padding: 0px 15px;
+    -webkit-box-shadow: 0px -1px 2px 3px rgba(0,0,0,0.10);
+    -moz-box-shadow: 0px -1px 2px 3px rgba(0,0,0,0.10);
+    box-shadow: 0px -1px 2px 3px rgba(0,0,0,0.10);
+}
+header img {
+    height: 65px;
+}
+.titulo {
+    text-align: center;
+    color: rgb(17, 17, 17) !important;
+    padding: 15px;
+    font-size: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    text-decoration: none !important;
+    flex: 1;
+}
+.carrinho {
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+}
+.space {
+    height: 65px;
+}
+.importante {
+    color: red;
+}
+
+/* box combo panel */
+.box-combo {
+    width: 80%;
+    margin: 20px auto;
+}
+.box-combo-heading {
+    color: #fff !important;
+    font-weight: bold;
+    background-color: #a8c757 !important;
+    border-color: #849e3f !important;
+}
+.box-combo-body {
+    padding: 0px 0px !important;
+}
+
+/* heads das tabs */
+.box-combo-tabs a{
+    cursor: pointer;
+}
+
+/* planos */
+.plano-titulo {
+    font-size: 20px;
+}
+.plano-valor {
+    margin: 5px 0px;
+    padding: 5px 0px;
+    border-top-width: 1px;
+    border-top-color: #dadada;
+    border-top-style: solid;
+    font-size: 25px;
+    color: #7d7d7d;
+    font-weight: bold;
+}
+.plano-posfidelidade {
+    font-size: 11px;
+    display: block;
+}

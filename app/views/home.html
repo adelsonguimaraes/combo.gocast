@@ -1,0 +1,72 @@
+<div ng-include="'app/views/common/header.html'"></div>
+<div class="panel panel-default box-combo">
+    <div class="panel-heading box-combo-heading">
+        <h2><i class="fa fa-cube"></i> Monte Seu Combo</h2>
+    </div>
+    <div class="panel-body box-combo-body">
+        <ul class="nav nav-tabs">
+            <li ng-class="{'active': tab=='internet'}"><a data-toggle="tab" href="#internet">Internet</a></li>
+            <li ng-class="{'active': tab=='tv'}"><a data-toggle="tab" href="#tv">TV</a></li>
+            <li ng-class="{'active': tab=='pa'}"><a data-toggle="tab" href="#pa">Plano Adicional</a></li>
+        </ul>
+        
+        <div class="tab-content">
+            <div id="internet" class="tab-pane fade in active">
+                <input class="form-control" type="text" ng-model="filtroInternet" placeholder="Encontre mais rápido seu plano digitando aqui seu interesse">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr ng-repeat="obj in planosInternetResidencial | filter: filtroInternet">
+                                <td width='40px'>
+                                    <img height="120px" src="libs/img/internet-com-IP-fixo.JPG" alt="" srcset="">
+                                </td>
+                                <td>
+                                    <div class="plano-titulo"><b>{{obj.titulo}}</b></div>
+                                    <div>{{obj.detalhes}}</div>
+                                    <div>Fidelidade {{obj.fidelidade}}</div>
+                                    <div class="plano-valor"> <i class="fa fa-file-text"></i> {{obj.valor | moeda}}
+                                        <span class="plano-posfidelidade">{{obj.posfidelidade}}</span>
+                                    </div>
+                                </td>
+                                <td width="40px" style="padding:40px;">
+                                    <button class="btn btn-primary">SELECIONAR</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="tv" class="tab-pane fade">
+                <input class="form-control" type="text" ng-model="filtroTV" placeholder="Encontre mais rápido seu plano digitando aqui seu interesse">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr ng-repeat="obj in planosTv | filter: filtroTV">
+                                <td width='40px'>
+                                    <img height="120px" src="libs/img/20160929-familia-tv.JPG" alt="" srcset="">
+                                </td>
+                                <td>
+                                    <div class="plano-titulo"><b>{{obj.titulo}}</b></div>
+                                    <div>{{obj.detalhes}}</div>
+                                    <div class="plano-valor"> <i class="fa fa-file-text"></i> {{obj.valor | moeda}}
+                                        <span class="plano-posfidelidade">{{obj.posfidelidade}}</span>
+                                    </div>
+                                </td>
+                                <td width="40px" style="padding:40px;">
+                                    <button class="btn btn-primary">SELECIONAR</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="pa" class="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Some content in menu 2.</p>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        Valor Total
+    </div>
+</div>
