@@ -33,6 +33,7 @@ header img {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
     text-decoration: none !important;
+    cursor: pointer;
     flex: 1;
 }
 .carrinho {
@@ -64,6 +65,29 @@ header img {
 
 .box-combo-footer {
     padding: 0px 0px !important;
+    display: flex;
+    width: 100%;
+    height: 72px;
+}
+.box-combo-total {
+    width: 200px;
+    text-align: center;
+    border-right: 1px solid #dadada;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #a8c757 !important;
+}
+.box-combo-total > label {
+    font-size: 16px;
+}
+.box-combo-space {
+    flex:1;
+}
+.box-combo-acoes {
+    width: 200px;
+    border-left: 1px solid #dadada;
+    text-align: center;
+    padding: 20px;
 }
 
 /* heads das tabs */
@@ -94,10 +118,14 @@ header img {
     margin: 0 auto;
 }
 
+.tab-content {
+    margin-bottom: 1px;
+}
+
 @media only screen and (max-width: 767px) {
     .box-combo {
         width: 100%;
-        margin: 0px auto;
+        margin: 0px auto 73px auto;
     }
     .box-combo-footer {
         position: fixed;
@@ -107,7 +135,14 @@ header img {
         width: 100%;
         margin: 0 auto;
     }
-    .tab-content{
-        margin-bottom: 54px;
+    .box-combo-total {
+        padding: 15px;
+        font-size: 16px;
+    }
+    .box-combo-total > label {
+        font-size: 16px;
+    }
+    .box-combo-acoes {
+        border: none;
     }
 }

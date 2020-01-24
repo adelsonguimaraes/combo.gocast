@@ -53,36 +53,92 @@ angular.module(module).controller('homeCtrl', function ($rootScope, $scope, auth
             titulo: 'Plano Start',
             detalhes: '31 Canais',
             valor: 59.90,
-            posfidelidade: '*Após 1 Ano R$69,90'
+            posfidelidade: '*Após 1 Ano R$69,90',
+            selecionado: false
         },
         {
             titulo: 'Plano Max',
             detalhes: '50 Canais',
             valor: 84.90,
-            posfidelidade: '*Após 1 Ano R$94,90'
+            posfidelidade: '*Após 1 Ano R$94,90',
+            selecionado: false
         },
         {
             titulo: 'Plano Plus',
             detalhes: '75 Canais',
             valor: 129.90,
-            posfidelidade: '*Após 1 Ano R$139,90'
+            posfidelidade: '*Após 1 Ano R$139,90',
+            selecionado: false
         },
         {
             titulo: 'Plano Prime',
             detalhes: '85 Canais',
             valor: 179.90,
-            posfidelidade: '*Após 1 Ano R$189,90'
+            posfidelidade: '*Após 1 Ano R$189,90',
+            selecionado: false
         }
     ]
 
     $scope.total = 0;
 
     $scope.selecionaInternet = function (obj) {
-        for (f of $scope.planosInternetResidencial) {
-            f.selecionado = false;
+        if (!obj.selecionado) {
+            for (f of $scope.planosInternetResidencial) {
+                f.selecionado = false;
+            }
+            obj.selecionado = true;
+
+            MyToast.show('Plano de Internet ' + obj.titulo + ' Selecionado');
+        }else{
+            obj.selecionado = false;
         }
-        obj.selecionado = true;
-        $scope.total += obj.valor;
+        
+        totalizador();
+    }
+
+    $scope.selecionaTv = function (obj) {
+        if (!obj.selecionado) {
+            for (f of $scope.planosTv) {
+                f.selecionado = false;
+            }
+            obj.selecionado = true;
+
+            MyToast.show('Plano de TV ' + obj.titulo + ' Selecionado');
+        }else{
+            obj.selecionado = false;
+        }
+        
+        totalizador();
+    }
+
+    function totalizador () {
+        $scope.total = 0;
+        var internet = false;
+        for (f of $scope.planosInternetResidencial) {
+            if (f.selecionado) {
+                $scope.total += parseFloat(f.valor);
+                internet = true;
+            }
+        }
+        for (f of $scope.planosTv) {
+            if (f.selecionado) {
+                $scope.total += parseFloat(f.valor);
+                if (internet) $scope.total += -10;
+            }
+        }
+    }
+
+    $scope.finalizar = function () {
+        for (f of $scope.planosInternetResidencial) {
+            if (f.selecionado) {
+                console.log(f.titulo);
+            }
+        }
+        for (f of $scope.planosTv) {
+            if (f.selecionado) {
+                console.log(f.titulo);
+            }
+        }
     }
     
 });
