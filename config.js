@@ -8,7 +8,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
 
     $stateProvider
         .state('home', {
-            url: "/home",
+            url: "/home?estado&tipo",
             templateUrl: "app/views/home.html",
             controller: "homeCtrl",
             data: { pageTitle: 'Home', specialClass: 'gray-bg'},

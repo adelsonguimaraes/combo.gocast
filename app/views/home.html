@@ -5,12 +5,13 @@
     </div>
     <div class="panel-body box-combo-body">
         <ul class="nav nav-tabs">
-            <li ng-class="{'active': tab=='internet'}"><a data-toggle="tab" href="#internet">Internet</a></li>
-            <li ng-class="{'active': tab=='tv'}"><a data-toggle="tab" href="#tv">TV</a></li>
-            <li ng-class="{'active': tab=='pa'}"><a data-toggle="tab" href="#pa">Plano Adicional</a></li>
+            <li class="active"><a data-toggle="tab" href="{{tabparams}}#internet" ng-click="clickTab('internet')">Internet</a></li>
+            <li><a data-toggle="tab" href="{{tabparams}}#tv" ng-click="clickTab('tv')">TV</a></li>
+            <li><a data-toggle="tab" href="{{tabparams}}#pa" ng-click="clickTab('pa')">Plano Adicional</a></li>
+            <li><a data-toggle="tab" href="{{tabparams}}#form" ng-click="clickTab('form')">Finalizar</a></li>
         </ul>
         
-        <div class="tab-content">
+        <div class="tab-content box-combo-tab-content">
             <div id="internet" class="tab-pane fade in active">
                 <input class="form-control" type="text" ng-model="filtroInternet" placeholder="Encontre mais rápido seu plano digitando aqui seu interesse">
                 <div class="table-responsive">
@@ -64,6 +65,56 @@
                 <h3>Menu 2</h3>
                 <p>Some content in menu 2.</p>
             </div>
+            <div id="form" class="tab-pane fade box-combo-form">
+                <form name="form">
+                    <div class="row">
+                        <div class="col-sm-6" style="border-right: 1px solid #e6e6e6; height: 400px;">
+                            <h3>Planos Selecionados</h3>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Plano</th>
+                                            <th>Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="obj in combo">
+                                            <td>{{obj.titulo}}</td>
+                                            <td>{{obj.valor | moeda}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h3>Contato</h3>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="">Nome</label>
+                                        <input class="form-control input-obrigatorio" type="text" name="nome" placeholder="Informe o seu nome" ng-model="obj.nome" ng-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="">Email</label>
+                                        <input class="form-control" type="email" name="email" placeholder="Informe o seu email" ng-model="obj.email" ng-required="false">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="">Celular</label>
+                                        <input class="form-control input-obrigatorio" type="text" celular name="celular" placeholder="Informe o seu celular" ng-model="obj.celular" ng-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <div class="panel-footer box-combo-footer">
@@ -74,9 +125,8 @@
         <div class="box-combo-space"></div>
         <div class="box-combo-acoes">
             <div class="btn-group">
-                <button class="btn btn-default"><i class="fa fa-caret-left"></i></button>
-                <button class="btn btn-primary" ng-click="finalizar()">Finalizar</button>
-                <button class="btn btn-default"><i class="fa fa-caret-right"></i></button>
+                <button class="btn btn-primary" ng-click="finalizar()" ng-if="tab!=='form'">FINALIZAR</button>
+                <button class="btn btn-primary" ng-click="solicitar(obj)" ng-if="tab=='form'" ng-disabled="form.$invalid">SOLICITAR</button>
             </div>
         </div>
     </div>

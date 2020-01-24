@@ -118,11 +118,22 @@ header img {
     margin: 0 auto;
 }
 
-.tab-content {
+.box-combo-tab-content {
     margin-bottom: 1px;
+    height: 60vh;
+    overflow: overlay;
 }
 
-@media only screen and (max-width: 767px) {
+.box-combo-form {
+    height: 100%;
+    padding: 0px 20px;
+}
+
+.input-obrigatorio {
+    border-left: 2px solid brown;
+}
+
+@media only screen and (max-width: 1200px) {
     .box-combo {
         width: 100%;
         margin: 0px auto 73px auto;
@@ -144,5 +155,9 @@ header img {
     }
     .box-combo-acoes {
         border: none;
+    }
+    .box-combo-tab-content {
+        height: 100%;
+        overflow: overlay;
     }
 }

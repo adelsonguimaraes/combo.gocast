@@ -1,9 +1,17 @@
-angular.module(module).controller('homeCtrl', function ($rootScope, $scope, authenticationAPI, genericAPI, $location, SweetAlert, $uibModal, $timeout) {
+angular.module(module).controller('homeCtrl', function ($rootScope, $scope, authenticationAPI, genericAPI, $location, SweetAlert, $uibModal, $timeout, $stateParams) {
     
     $scope.title = '';
 
     // tab ativa
     $scope.tab = 'internet';
+    $scope.clickTab = function (tab) {
+        $scope.tab = tab;
+    }
+
+    // getando parametros da URL
+    $scope.params = $stateParams;
+
+    $scope.tabparams = window.location.hash.substr(window.location.hash.indexOf('?'));
 
     // lista de planos de internet residencial
     $scope.planosInternetResidencial = [
@@ -91,6 +99,7 @@ angular.module(module).controller('homeCtrl', function ($rootScope, $scope, auth
             MyToast.show('Plano de Internet ' + obj.titulo + ' Selecionado');
         }else{
             obj.selecionado = false;
+            MyToast.show('Plano de Internet ' + obj.titulo + ' Removido');
         }
         
         totalizador();
@@ -106,39 +115,45 @@ angular.module(module).controller('homeCtrl', function ($rootScope, $scope, auth
             MyToast.show('Plano de TV ' + obj.titulo + ' Selecionado');
         }else{
             obj.selecionado = false;
+            MyToast.show('Plano de Internet ' + obj.titulo + ' Removido');
         }
         
         totalizador();
     }
 
+    $scope.combo = [];
     function totalizador () {
         $scope.total = 0;
+        $scope.combo = [];
         var internet = false;
         for (f of $scope.planosInternetResidencial) {
             if (f.selecionado) {
                 $scope.total += parseFloat(f.valor);
+                var copy = angular.copy(f);
+                copy.titulo = 'Internet - ' + copy.titulo;
+                $scope.combo.push(copy);
                 internet = true;
             }
         }
         for (f of $scope.planosTv) {
             if (f.selecionado) {
                 $scope.total += parseFloat(f.valor);
+                var copy = angular.copy(f);
+                copy.titulo = 'TV - ' + copy.titulo;
+                $scope.combo.push(copy);
                 if (internet) $scope.total += -10;
             }
         }
     }
 
     $scope.finalizar = function () {
-        for (f of $scope.planosInternetResidencial) {
-            if (f.selecionado) {
-                console.log(f.titulo);
-            }
-        }
-        for (f of $scope.planosTv) {
-            if (f.selecionado) {
-                console.log(f.titulo);
-            }
-        }
+        $('.nav-tabs a[href="e#form"]').tab('show');
+        $scope.tab = 'form';
+    }
+
+    $scope.solicitar = function (obj) {
+        console.log($scope.combo);
+        console.log(obj);
     }
     
 });
