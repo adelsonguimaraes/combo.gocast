@@ -87,7 +87,32 @@ angular.module(module).controller('homeCtrl', function ($rootScope, $scope, auth
         }
     ]
 
+    // lista de planos adicionais
+    $scope.planosAdicionais = [
+        {
+            titulo: 'Ponto Adicional 1',
+            detalhes: '1 Ponto Adicional de TV',
+            valor: 29.90,
+            selecionado: false
+        },
+        {
+            titulo: 'Ponto Adicional 2',
+            detalhes: '2 Pontos Adicional de TV',
+            valor: 59.90,
+            selecionado: false
+        },
+        {
+            titulo: 'Ponto Adicional 3',
+            detalhes: '3 Pontos Adicional de TV',
+            valor: 89.70,
+            selecionado: false
+        }
+    ]
+
     $scope.total = 0;
+    $scope.combo = [];
+    var internet = false;
+    var tv = false;
 
     $scope.selecionaInternet = function (obj) {
         if (!obj.selecionado) {
@@ -116,34 +141,65 @@ angular.module(module).controller('homeCtrl', function ($rootScope, $scope, auth
         }else{
             obj.selecionado = false;
             MyToast.show('Plano de Internet ' + obj.titulo + ' Removido');
+            for (f of $scope.planosAdicionais) f.selecionado = false;
         }
         
         totalizador();
     }
 
-    $scope.combo = [];
+    $scope.selecionaAdicional = function (obj) {
+        if (!tv) return SweetAlert.swal({ html: true, title: "Atenção", text: "Selecione um plano de TV para adicionar ponto.", type: "error" });
+
+        if (!obj.selecionado) {
+            for (f of $scope.planosAdicionais) {
+                f.selecionado = false;
+            }
+            obj.selecionado = true;
+
+            MyToast.show(obj.titulo + ' Selecionado');
+        }else{
+            obj.selecionado = false;
+            MyToast.show(obj.titulo + ' Removido');
+        }
+        
+        totalizador();
+    }
+
     function totalizador () {
         $scope.total = 0;
         $scope.combo = [];
-        var internet = false;
+        internet = false;
         for (f of $scope.planosInternetResidencial) {
             if (f.selecionado) {
-                $scope.total += parseFloat(f.valor);
+                $scope.total = (parseFloat($scope.total) + parseFloat(f.valor)).toFixed(2);
                 var copy = angular.copy(f);
                 copy.titulo = 'Internet - ' + copy.titulo;
                 $scope.combo.push(copy);
                 internet = true;
             }
         }
+        tv = false;
         for (f of $scope.planosTv) {
             if (f.selecionado) {
-                $scope.total += parseFloat(f.valor);
+                $scope.total = (parseFloat($scope.total) + parseFloat(f.valor)).toFixed(2);
                 var copy = angular.copy(f);
                 copy.titulo = 'TV - ' + copy.titulo;
                 $scope.combo.push(copy);
-                if (internet) $scope.total += -10;
+                tv = true;
             }
         }
+        for (f of $scope.planosAdicionais) {
+            if (f.selecionado) {
+                $scope.total = (parseFloat($scope.total) + parseFloat(f.valor)).toFixed(2);
+                var copy = angular.copy(f);
+                copy.titulo = copy.titulo;
+                $scope.combo.push(copy);
+            }
+        }
+
+        // calculo de desconto do valor
+        // se no combo possuir Internet e TV
+        if (internet && tv) $scope.total = (parseFloat($scope.total) - parseFloat(-10)).toFixed(2);
     }
 
     $scope.finalizar = function () {

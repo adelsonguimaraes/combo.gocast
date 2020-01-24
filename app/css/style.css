@@ -133,6 +133,11 @@ header img {
     border-left: 2px solid brown;
 }
 
+.box-planos-selecionados {
+    border-right: 1px solid #e6e6e6;
+    height: 400px;
+}
+
 @media only screen and (max-width: 1200px) {
     .box-combo {
         width: 100%;
@@ -159,5 +164,9 @@ header img {
     .box-combo-tab-content {
         height: 100%;
         overflow: overlay;
+    }
+    .box-planos-selecionados {
+        border-right: none;
+        height: auto;
     }
 }

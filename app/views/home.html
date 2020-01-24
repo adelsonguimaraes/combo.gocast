@@ -19,7 +19,7 @@
                         <tbody>
                             <tr ng-repeat="obj in planosInternetResidencial | filter: filtroInternet">
                                 <td width='40px'>
-                                    <img height="120px" src="libs/img/internet-com-IP-fixo.JPG" alt="" srcset="">
+                                    <img height="120px" src="libs/img/internet-com-IP-fixo.jpg" alt="" srcset="">
                                 </td>
                                 <td>
                                     <div class="plano-titulo"><b>{{obj.titulo}}</b></div>
@@ -44,7 +44,7 @@
                         <tbody>
                             <tr ng-repeat="obj in planosTv | filter: filtroTV">
                                 <td width='40px'>
-                                    <img height="120px" src="libs/img/20160929-familia-tv.JPG" alt="" srcset="">
+                                    <img height="120px" src="libs/img/20160929-familia-tv.jpg" alt="" srcset="">
                                 </td>
                                 <td>
                                     <div class="plano-titulo"><b>{{obj.titulo}}</b></div>
@@ -62,13 +62,34 @@
                 </div>
             </div>
             <div id="pa" class="tab-pane fade">
-                <h3>Menu 2</h3>
-                <p>Some content in menu 2.</p>
+                <input class="form-control" type="text" ng-model="filtroAdicional" placeholder="Encontre mais rápido seu plano digitando aqui seu interesse">
+                <div class="table-responsive">
+                    <table class="table table-bordered plano-table">
+                        <tbody>
+                            <tr ng-repeat="obj in planosAdicionais | filter: filtroAdicional">
+                                <td width='40px'>
+                                    <img height="120px" src="libs/img/a-plus-png-6.png" alt="" srcset="">
+                                </td>
+                                <td>
+                                    <div class="plano-titulo"><b>{{obj.titulo}}</b></div>
+                                    <div>{{obj.detalhes}}</div>
+                                    <!-- <div>Fidelidade {{obj.fidelidade}}</div> -->
+                                    <div class="plano-valor"> <i class="fa fa-file-text"></i> {{obj.valor | moeda}}
+                                        <!-- <span class="plano-posfidelidade">{{obj.posfidelidade}}</span> -->
+                                    </div>
+                                </td>
+                                <td width="40px" style="padding:40px;">
+                                    <button class="btn btn-default" ng-class="{'btn-primary' :obj.selecionado}" ng-click="selecionaAdicional(obj)">SELECIONAR</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div id="form" class="tab-pane fade box-combo-form">
                 <form name="form">
                     <div class="row">
-                        <div class="col-sm-6" style="border-right: 1px solid #e6e6e6; height: 400px;">
+                        <div class="col-sm-6 box-planos-selecionados">
                             <h3>Planos Selecionados</h3>
                             <div class="table-responsive">
                                 <table class="table table-bordered">
