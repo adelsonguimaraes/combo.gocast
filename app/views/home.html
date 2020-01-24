@@ -14,7 +14,7 @@
             <div id="internet" class="tab-pane fade in active">
                 <input class="form-control" type="text" ng-model="filtroInternet" placeholder="Encontre mais rápido seu plano digitando aqui seu interesse">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered plano-table">
                         <tbody>
                             <tr ng-repeat="obj in planosInternetResidencial | filter: filtroInternet">
                                 <td width='40px'>
@@ -29,7 +29,7 @@
                                     </div>
                                 </td>
                                 <td width="40px" style="padding:40px;">
-                                    <button class="btn btn-primary">SELECIONAR</button>
+                                    <button class="btn btn-default" ng-class="{'btn-primary' :obj.selecionado}" ng-click="selecionaInternet(obj)">SELECIONAR</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -39,7 +39,7 @@
             <div id="tv" class="tab-pane fade">
                 <input class="form-control" type="text" ng-model="filtroTV" placeholder="Encontre mais rápido seu plano digitando aqui seu interesse">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered plano-table">
                         <tbody>
                             <tr ng-repeat="obj in planosTv | filter: filtroTV">
                                 <td width='40px'>
@@ -68,17 +68,20 @@
     </div>
     <div class="panel-footer box-combo-footer">
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered plano-table">
                 <tbody>
                     <tr>
-                        <td width="40px">
-
-                            <div>VALOR TOTAL</div>
-                            <div>{{total}}</div>
+                        <td style="width:198.5px; text-align: center;">
+                            <div style="font-size:16px; font-weight: bold;">VALOR TOTAL</div>
+                            <div style="font-size:20px; font-weight: bold;">{{total | moeda}}</div>
                         </td>
-                        <td width="100%"></td>
-                        <td  width="40px">
-                            <button class="btn btn-primary">Finalizar</button>
+                        <td style="width:61.8%;"></td>
+                        <td style="text-align: center">
+                            <div class="btn-group">
+                                <button class="btn btn-default"><</button>
+                                <button class="btn btn-primary">FINALIZAR</button>
+                                <button class="btn btn-default">></button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>

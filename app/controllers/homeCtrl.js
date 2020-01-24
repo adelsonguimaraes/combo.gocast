@@ -13,7 +13,8 @@ angular.module(module).controller('homeCtrl', function ($rootScope, $scope, auth
             fidelidade: '12 Meses',
             valor: 99.00,
             posfidelidade: '*Após 1 ano 30 Mega R$149,90',
-            tipo: 'residencial'
+            tipo: 'residencial',
+            selecionado: false
         },
         {
             titulo: '60 Mega',
@@ -21,7 +22,8 @@ angular.module(module).controller('homeCtrl', function ($rootScope, $scope, auth
             fidelidade: '12 Meses',
             valor: 129.90,
             posfidelidade: '*Após 1 ano 60 mega R$ 179,00',
-            tipo: 'residencial'
+            tipo: 'residencial',
+            selecionado: false
         }
     ];
 
@@ -72,5 +74,15 @@ angular.module(module).controller('homeCtrl', function ($rootScope, $scope, auth
             posfidelidade: '*Após 1 Ano R$189,90'
         }
     ]
+
+    $scope.total = 0;
+
+    $scope.selecionaInternet = function (obj) {
+        for (f of $scope.planosInternetResidencial) {
+            f.selecionado = false;
+        }
+        obj.selecionado = true;
+        $scope.total += obj.valor;
+    }
     
 });

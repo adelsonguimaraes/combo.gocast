@@ -89,3 +89,25 @@ header img {
     font-size: 11px;
     display: block;
 }
+
+.plano-table {
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 767px) {
+    .box-combo {
+        width: 100%;
+        margin: 0px auto;
+    }
+    .box-combo-footer {
+        position: fixed;
+        bottom: 0;
+    }
+    .table-responsive {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .tab-content{
+        margin-bottom: 54px;
+    }
+}
